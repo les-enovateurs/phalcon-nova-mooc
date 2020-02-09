@@ -1,0 +1,64 @@
+version: '3.2'
+
+networks:
+  mooc-network:
+    driver: bridge
+services:
+  mooc-db:
+    image: postgres:10.8-alpine
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data:Z
+      - ./init_db_data.sql:/docker-entrypoint-initdb.d/init_db_data.sql
+    networks:
+      - mooc-network
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: phalcon
+    command: postgres -c logging_collector=on -c log_destination=stderr -c log_statement=all
+  
+  mooc-web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - env=dev
+        - phalcon_version=v4.0.0
+    expose:
+      - 80
+    ports:
+      - 80:80
+    volumes:
+      - type: bind
+        source: ./web/
+        target: /var/www/html
+    networks:
+      - mooc-network
+    working_dir: /var/www/html
+    depends_on:
+      - mooc-db
+      - mooc-api
+
+  mooc-api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - env=dev
+        - phalcon_version=v4.0.0
+    expose:
+      - 8080
+    ports:
+      - 8080:80
+    volumes:
+      - type: bind
+        source: ./api/
+        target: /var/www/html
+    networks:
+      - mooc-network
+    working_dir: /var/www/html
+    depends_on:
+      - mooc-db

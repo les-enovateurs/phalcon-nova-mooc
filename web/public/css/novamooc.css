@@ -1,0 +1,17 @@
+.fond-img{
+    background-image: url('../img/fond_index.jpg');
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 100px;
+    padding-bottom: 40px;
+}
+
+.form-centrer{
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.90);
+}
