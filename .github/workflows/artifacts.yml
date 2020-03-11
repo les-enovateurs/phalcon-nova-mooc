@@ -7,6 +7,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: cypress-io/github-action@v1
+        with:
+          build:
+            docker-compose up -d --build && chmod 777 -Rf web/cache web/public/files web/phalcon.log
       # after the test run completes
       # store videos and any screenshots
       # NOTE: screenshots will be generated only if E2E test failed
