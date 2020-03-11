@@ -1,4 +1,3 @@
 {
-    "nodeVersion": "system",
-    "projectId": "asd86"
-  }
+    "baseUrl": "http://localhost"
+}
