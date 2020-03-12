@@ -8,10 +8,9 @@ jobs:
       - uses: actions/checkout@v1
       - uses: cypress-io/github-action@v1
         with:
-        run: |
-          sudo mkdir web/cache
-          sudo chmod 777 -Rf web/cache web/public/files web/phalcon.log
-          build:
+          build: |
+            sudo mkdir web/cache
+            sudo chmod 777 -Rf web/cache web/public/files web/phalcon.log
             docker-compose up -d --build
       # after the test run completes
       # store videos and any screenshots
