@@ -6,12 +6,14 @@ jobs:
     name: Artifacts
     steps:
       - uses: actions/checkout@v1
+      - name: Prepare folder
+      run: |
+        mkdir web/cache
+        chmod 777 -Rf web/cache web/public/files web/phalcon.log
       - uses: cypress-io/github-action@v1
         with:
           build:
-            - docker-compose up -d --build
-            - mkdir web/cache
-            - chmod 777 -Rf web/cache web/public/files web/phalcon.log
+            docker-compose up -d --build
       # after the test run completes
       # store videos and any screenshots
       # NOTE: screenshots will be generated only if E2E test failed
