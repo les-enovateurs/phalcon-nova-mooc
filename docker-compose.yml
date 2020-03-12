@@ -19,7 +19,27 @@ services:
       POSTGRES_PASSWORD: root
       POSTGRES_DB: phalcon
     command: postgres -c logging_collector=on -c log_destination=stderr -c log_statement=all
-  
+    
+  composer-web:
+    restart: 'no'
+    image: composer/composer:php7
+    command: install
+    volumes:
+      - type: bind
+        source: ./web
+        target: /var/www/html
+    working_dir: /var/www/html
+    
+  composer-api:
+    restart: 'no'
+    image: composer/composer:php7
+    command: install
+    volumes:
+      - type: bind
+        source: ./web
+        target: /var/www/html
+    working_dir: /var/www/html
+    
   mooc-web:
     build:
       context: .
