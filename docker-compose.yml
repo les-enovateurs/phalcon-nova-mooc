@@ -32,7 +32,7 @@ services:
     
   composer-api:
     restart: 'no'
-    image: composer/composer:php7
+    image: composer:1.10.0
     command: install
     volumes:
       - type: bind
