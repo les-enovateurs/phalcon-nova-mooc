@@ -7,9 +7,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Prepare folder
-      run: |
-        mkdir web/cache
-        chmod 777 -Rf web/cache web/public/files web/phalcon.log
+        run: |
+          mkdir web/cache
+          chmod 777 -Rf web/cache web/public/files web/phalcon.log
       - uses: cypress-io/github-action@v1
         with:
           build:
