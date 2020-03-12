@@ -6,12 +6,11 @@ jobs:
     name: Artifacts
     steps:
       - uses: actions/checkout@v1
-      - name: Prepare folder
-        run: |
-          mkdir web/cache
-          chmod 777 -Rf web/cache web/public/files web/phalcon.log
       - uses: cypress-io/github-action@v1
         with:
+        run: |
+          sudo mkdir web/cache
+          sudo chmod 777 -Rf web/cache web/public/files web/phalcon.log
           build:
             docker-compose up -d --build
       # after the test run completes
