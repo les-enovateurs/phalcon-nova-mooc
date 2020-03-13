@@ -8,6 +8,10 @@ describe('Check feature of NovaMooc', function() {
         it('Visit the home page', function() {
             cy.visit('/')
 
+            cy.get(":input[name='email']")
+            .type('john.doe@les-enovateurs.com')
+            .should('have.value', 'john.doe@les-enovateurs.com')
+
             cy.get(":input[name='hello']")
             .type('john.doe@les-enovateurs.com')
             .should('have.value', 'john.doe@les-enovateurs.com')
