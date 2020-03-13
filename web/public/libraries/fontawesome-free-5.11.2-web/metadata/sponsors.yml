@@ -374,12 +374,12 @@ nimblr:
     - nimblr
   label: Nimblr
   url: 'https://nimblr.ai'
-lastnamepse:
+nompse:
   icons:
     - chalkboard
     - chalkboard-teacher
-  label: lastnamep.se
-  url: 'https://lastnamep.se'
+  label: Nomp.se
+  url: 'https://nomp.se'
 ns8:
   icons:
     - ns8

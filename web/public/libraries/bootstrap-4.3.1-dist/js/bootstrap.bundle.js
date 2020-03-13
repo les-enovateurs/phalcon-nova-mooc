@@ -3838,8 +3838,8 @@
    * @property {Boolean} data.flipped True if popper has been flipped by flip modifier
    * @property {Boolean} data.hide True if the reference element is out of boundaries, useful to know when to hide the popper
    * @property {HTMLElement} data.arrowElement Node used as arrow by arrow modifier
-   * @property {Object} data.styles Any CSS property defined here will be applied to the popper. It expects the JavaScript lastnameenclature (eg. `marginBottom`)
-   * @property {Object} data.arrowStyles Any CSS property defined here will be applied to the popper arrow. It expects the JavaScript lastnameenclature (eg. `marginBottom`)
+   * @property {Object} data.styles Any CSS property defined here will be applied to the popper. It expects the JavaScript nomenclature (eg. `marginBottom`)
+   * @property {Object} data.arrowStyles Any CSS property defined here will be applied to the popper arrow. It expects the JavaScript nomenclature (eg. `marginBottom`)
    * @property {Object} data.boundaries Offsets of the popper boundaries
    * @property {Object} data.offsets The measurements of popper, reference and arrow elements
    * @property {Object} data.offsets.popper `top`, `left`, `width`, `height` values

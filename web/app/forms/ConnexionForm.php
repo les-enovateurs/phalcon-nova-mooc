@@ -64,6 +64,7 @@ class ConnexionForm extends Form
 
         $oBoutonDeSoumission = new Submit('bouton_de_soumission', [
             'class' => 'btn btn-primary',
+            'id'    => 'bouton_de_soumission'
         ]);
         $oBoutonDeSoumission->setDefault(ucfirst('se connecter'));
 
