@@ -19,17 +19,17 @@ $router->addPost('/api/inscription', [
 ])->setName('inscription_index');
 
 $router->addGet('/api/utilisateur/{id:[0-9]+}', [
-    'controller' => 'utilisateurs',
+    'controller' => 'nov_users',
     'action'     => 'infoUtilisateur',
 ])->setName('info_utilisateur');
 
 $router->addPost('/api/utilisateur', [
-    'controller' => 'utilisateurs',
+    'controller' => 'nov_users',
     'action'     => 'nouvel',
 ])->setName('nouveau_utilisateur');
 
 $router->addGet('/api/utilisateur/cours', [
-    'controller' => 'utilisateurs',
+    'controller' => 'nov_users',
     'action'     => 'cours',
 ])->setName('cours_utilisateur');
 

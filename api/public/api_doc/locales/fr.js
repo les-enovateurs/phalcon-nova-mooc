@@ -9,7 +9,7 @@ define({
         'Field'                       : 'Champ',
         'General'                     : 'Général',
         'Generated with'              : 'Généré avec',
-        'Name'                        : 'Nom',
+        'Name'                        : 'lastname',
         'No response values.'         : 'Aucune valeur de réponse.',
         'optional'                    : 'optionnel',
         'Parameter'                   : 'Paramètre',

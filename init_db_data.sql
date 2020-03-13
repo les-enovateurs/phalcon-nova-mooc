@@ -1,16 +1,16 @@
--- creation de la table utilisateurs
-CREATE TABLE utilisateurs (
+-- create table nov_users
+CREATE TABLE nov_users (
 	id bigserial NOT NULL,
-	nom varchar NULL,
-	prenom varchar NULL,
+	lastname varchar NULL,
+	firstname varchar NULL,
 	email varchar NOT NULL,
-	mot_de_passe varchar NOT NULL,
-	CONSTRAINT utilisateurs_pk PRIMARY KEY (id),
-	CONSTRAINT utilisateurs_un UNIQUE (email)
+	password varchar NOT NULL,
+	CONSTRAINT nov_users_pk PRIMARY KEY (id),
+	CONSTRAINT nov_users_un UNIQUE (email)
 );
 
--- insertion des données
-INSERT INTO utilisateurs (nom,prenom,email,mot_de_passe) VALUES 
+-- insert data
+INSERT INTO nov_users (lastname,firstname,email,password) VALUES 
 ('DOE','John','john.doe@les-enovateurs.com','azerty')
 ,('DOE','Louise','louise.doe@les-enovateurs.com','uiopq')
 ,('DOE','Sébastien','sebastien.doe@les-enovateurs.com','qsdf')
@@ -21,13 +21,13 @@ INSERT INTO utilisateurs (nom,prenom,email,mot_de_passe) VALUES
 
 CREATE TABLE cours (
 	id bigserial NOT NULL,
-	nom varchar NOT NULL,
+	lastname varchar NOT NULL,
 	description varchar NULL,
-	utilisateurs_id  bigint NOT NULL REFERENCES utilisateurs (id),
+	nov_users_id  bigint NOT NULL REFERENCES nov_users (id),
 	CONSTRAINT cours_pk PRIMARY KEY (id)
 );
 
-INSERT INTO cours (nom, description, utilisateurs_id) VALUES
+INSERT INTO cours (lastname, description, nov_users_id) VALUES
 ('Phalcon 3', 'Développez des applications web complexes et performantes en PHP.', 1),
 ('Docker', 'Développez des architectures performantes.', 2),
 ('AWS', 'Travaillez sur le cloud.', 3),

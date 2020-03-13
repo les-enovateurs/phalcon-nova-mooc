@@ -9,7 +9,7 @@ define({
         'Field'                       : 'Camp',
         'General'                     : 'General',
         'Generated with'              : 'Generat amb',
-        'Name'                        : 'Nom',
+        'Name'                        : 'lastname',
         'No response values.'         : 'Sense valors en la resposta.',
         'optional'                    : 'opcional',
         'Parameter'                   : 'Paràmetre',

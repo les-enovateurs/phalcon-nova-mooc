@@ -149,9 +149,9 @@ $di->setShared('logger', function () {
 });
 
 $di->set('utilisateur', function () {
-    $oParametre     = $this->getRequest()->getJsonRawBody();
-    $nUtilisateurId = SecurityPlugin::getUtilisateurIdFromToken($this->getConfig(), $oParametre->token);
-    $oUtilisateur   = NovaMooc\Models\Utilisateurs::findFirstById($nUtilisateurId);
+    $oParameter = $this->getRequest()->getJsonRawBody();
+    $nUserId    = SecurityPlugin::getUserIdFromToken($this->getConfig(), $oParameter->token);
+    $oUser      = NovaMooc\Models\NovUsers::findFirstById($nUserId);
 
-    return $oUtilisateur;
+    return $oUser;
 });

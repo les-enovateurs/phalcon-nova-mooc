@@ -22,7 +22,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
-            {{ connexion_form.render("mot_de_passe") }}
+            {{ connexion_form.render("password") }}
         </div>
 
         <div class="mb-3">

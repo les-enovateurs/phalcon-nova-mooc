@@ -64,7 +64,7 @@ define({ "api": [
     "examples": [
       {
         "title": "Exemple d'utilisation:",
-        "content": "curl -i -X GET -d '{\"token\":\"...\", \"nom\":\"Phalcon 4\", \"description\":\"Nouvelle version de Phalcon\"}' http://127.0.0.1/api/cours/modifier/1",
+        "content": "curl -i -X GET -d '{\"token\":\"...\", \"lastname\":\"Phalcon 4\", \"description\":\"Nouvelle version de Phalcon\"}' http://127.0.0.1/api/cours/modifier/1",
         "type": "curl"
       }
     ],
@@ -94,7 +94,7 @@ define({ "api": [
     "examples": [
       {
         "title": "Exemple d'utilisation:",
-        "content": "curl -i -X POST -d '{\"token\":\"...\", \"nom\":\"Phalcon\", \"description\":\"Un formation dingue\"}' http://127.0.0.1/api/cours/nouveau",
+        "content": "curl -i -X POST -d '{\"token\":\"...\", \"lastname\":\"Phalcon\", \"description\":\"Un formation dingue\"}' http://127.0.0.1/api/cours/nouveau",
         "type": "curl"
       }
     ],
@@ -163,11 +163,11 @@ define({ "api": [
     "url": "/api/inscription",
     "title": "Création d'un nouvel utilisateur",
     "name": "InscriptionUtilisateur",
-    "group": "Utilisateurs",
+    "group": "NovUsers",
     "examples": [
       {
         "title": "Exemple d'utilisation:",
-        "content": "curl -i -X POST -d '{\"nom\":\"DOE\",\"prenom\":\"Conor\",\"email\":\"conor.doe@les-enovateurs.com\", \"mot_de_passe\":\"azert\"}' http://127.0.0.1/api/inscription",
+        "content": "curl -i -X POST -d '{\"lastname\":\"DOE\",\"firstname\":\"Conor\",\"email\":\"conor.doe@les-enovateurs.com\", \"password\":\"azert\"}' http://127.0.0.1/api/inscription",
         "type": "curl"
       }
     ],
@@ -186,18 +186,18 @@ define({ "api": [
     },
     "version": "0.0.1",
     "filename": "../../app/controllers/IndexController.php",
-    "groupTitle": "Utilisateurs"
+    "groupTitle": "NovUsers"
   },
   {
     "type": "post",
     "url": "/api/connexion",
     "title": "Permet d'authentifier un utilisateur",
     "name": "connexionUtilisateur",
-    "group": "Utilisateurs",
+    "group": "NovUsers",
     "examples": [
       {
         "title": "Exemple d'utilisation:",
-        "content": "curl -i -X POST -d '{\"email\":\"conor.doe@les-enovateurs.com\", \"mot_de_passe\":\"azert\"}' http://127.0.0.1/api/connexion",
+        "content": "curl -i -X POST -d '{\"email\":\"conor.doe@les-enovateurs.com\", \"password\":\"azert\"}' http://127.0.0.1/api/connexion",
         "type": "curl"
       }
     ],
@@ -216,14 +216,14 @@ define({ "api": [
     },
     "version": "0.0.1",
     "filename": "../../app/controllers/IndexController.php",
-    "groupTitle": "Utilisateurs"
+    "groupTitle": "NovUsers"
   },
   {
     "type": "get",
     "url": "/api/cours",
     "title": "Récupére les cours gérés par l'utilisateur",
     "name": "coursUtilisateur",
-    "group": "Utilisateurs",
+    "group": "NovUsers",
     "examples": [
       {
         "title": "Exemple d'utilisation:",
@@ -245,15 +245,15 @@ define({ "api": [
       }
     },
     "version": "0.0.1",
-    "filename": "../../app/controllers/UtilisateursController.php",
-    "groupTitle": "Utilisateurs"
+    "filename": "../../app/controllers/NovUsersController.php",
+    "groupTitle": "NovUsers"
   },
   {
     "type": "get",
     "url": "/api/utilisateur",
     "title": "Récupération de l'utilisateur connecté",
     "name": "infoUtilisateur",
-    "group": "Utilisateurs",
+    "group": "NovUsers",
     "examples": [
       {
         "title": "Exemple d'utilisation:",
@@ -275,7 +275,7 @@ define({ "api": [
       }
     },
     "version": "0.0.1",
-    "filename": "../../app/controllers/UtilisateursController.php",
-    "groupTitle": "Utilisateurs"
+    "filename": "../../app/controllers/NovUsersController.php",
+    "groupTitle": "NovUsers"
   }
 ] });

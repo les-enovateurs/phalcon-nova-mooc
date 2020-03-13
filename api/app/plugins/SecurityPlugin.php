@@ -114,7 +114,7 @@ class SecurityPlugin extends Injectable
             ->__toString();
     }
 
-    public static function getUtilisateurIdFromToken($oConfig, $sToken){
+    public static function getUserIdFromToken($oConfig, $sToken){
         $oToken  = (new Parser())->parse($sToken);
         if ($oToken instanceof \Lcobucci\JWT\Token
             && true === $oToken->verify(new Lcobucci\JWT\Signer\Hmac\Sha256(), $oConfig->security->cle)) {

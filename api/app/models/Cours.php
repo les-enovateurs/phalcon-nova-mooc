@@ -15,7 +15,7 @@ class Cours extends \Phalcon\Mvc\Model
      *
      * @var string
      */
-    public $nom;
+    public $lastname;
 
     /**
      *
@@ -32,7 +32,7 @@ class Cours extends \Phalcon\Mvc\Model
         $this->setSchema("public");
         $this->setSource("cours");
 
-        $this->belongsTo('utilisateurs_id', Utilisateurs::class, 'id', [ 'alias' => 'entreprise' ]);
+        $this->belongsTo('nov_users_id', NovUsers::class, 'id', [ 'alias' => 'entreprise' ]);
     }
 
     /**

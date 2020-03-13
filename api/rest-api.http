@@ -1,9 +1,9 @@
 ### Connexion
-# curl -i -X POST -d '{"email":"john.doe@les-enovateurs.com","mot_de_passe":"d","token":null}' http://127.0.0.1/mooc_complet/api/connexion
+# curl -i -X POST -d '{"email":"john.doe@les-enovateurs.com","password":"d","token":null}' http://127.0.0.1/mooc_complet/api/connexion
 POST http://127.0.0.1:8080/api/connexion
 Content-Type: application/x-www-form-urlencoded
 
-{"email":"john.doe@les-enovateurs.com","mot_de_passe":"azerty","token":null}
+{"email":"john.doe@les-enovateurs.com","password":"azerty","token":null}
 
 ###
 GET http://127.0.0.1:8080/api/cours

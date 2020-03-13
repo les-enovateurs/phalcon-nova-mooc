@@ -15,14 +15,14 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-address-card"></i></span>
             </div>
-            {{ inscription_form.render("nom") }}
+            {{ inscription_form.render("lastname") }}
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-address-card"></i></span>
             </div>
-            {{ inscription_form.render("prenom") }}
+            {{ inscription_form.render("firstname") }}
         </div>
 
         <div class="input-group mb-3">
@@ -36,14 +36,14 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
-            {{ inscription_form.render("mot_de_passe") }}
+            {{ inscription_form.render("password") }}
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
-            {{ inscription_form.render("mot_de_passe_confirmation") }}
+            {{ inscription_form.render("password_confirmation") }}
         </div>
 
         <div class="mb-3">

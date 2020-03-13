@@ -18,43 +18,43 @@ class InscriptionForm extends Form
 
     public function initialize($oUtilisateur)
     {
-        // prenom
-        $prenom = new Text('prenom', [
-            'placeholder' => ucfirst('saisissez votre prénom'),
+        // firstname
+        $firstname = new Text('firstname', [
+            'placeholder' => ucfirst('saisissez votre prélastname'),
             'class'       => 'form-control',
             'required'    => 'required'
         ]);
-        $prenom->setLabel(ucfirst('prénom'));
-        $prenom->addValidators(
+        $firstname->setLabel(ucfirst('prélastname'));
+        $firstname->addValidators(
             [
                 new PresenceOf(
                     [
-                        'message' => ucfirst('votre prénom est requis')
+                        'message' => ucfirst('votre prélastname est requis')
                     ]
                 )
             ]
         );
-        $this->add($prenom);
+        $this->add($firstname);
 
-        // nom
-        $nom = new Text('nom',
+        // lastname
+        $lastname = new Text('lastname',
             [
-                'placeholder' => ucfirst('saisissez votre nom'),
+                'placeholder' => ucfirst('saisissez votre lastname'),
                 'class'       => 'form-control',
                 'required'    => 'required'
             ]);
-        $nom->setLabel(ucfirst('nom'));
-        $nom->addValidators(
+        $lastname->setLabel(ucfirst('lastname'));
+        $lastname->addValidators(
             [
                 new PresenceOf
                 (
                     [
-                        'message' => ucfirst('votre nom est requis')
+                        'message' => ucfirst('votre lastname est requis')
                     ]
                 )
             ]
         );
-        $this->add($nom);
+        $this->add($lastname);
 
         // email
         $email = new Text('email',
@@ -87,7 +87,7 @@ class InscriptionForm extends Form
         $this->add($email);
 
         // Mot de passe
-        $motDePasse = new Password('mot_de_passe',
+        $motDePasse = new Password('password',
             [
                 'placeholder' => ucfirst('saisissez votre mot de passe'),
                 'class'       => 'form-control',
@@ -117,22 +117,22 @@ class InscriptionForm extends Form
         $this->add($motDePasse);
 
         // Mot de passe confirmation
-        $mot_de_passe_confirmation = new Password('mot_de_passe_confirmation',
+        $password_confirmation = new Password('password_confirmation',
             [
                 'placeholder' => ucfirst('réecrivez votre mot de passe'),
                 'class'       => 'form-control',
                 'required'    => 'required'
             ]);
 
-        $mot_de_passe_confirmation->setLabel(ucfirst('mot de passe de confirmation'));
-        $mot_de_passe_confirmation->addValidator(
+        $password_confirmation->setLabel(ucfirst('mot de passe de confirmation'));
+        $password_confirmation->addValidator(
             new PresenceOf(
                 [
                     'message' => ucfirst('le mot de passe de confirmation est requis')
                 ]
             )
         );
-        $mot_de_passe_confirmation->addValidator(
+        $password_confirmation->addValidator(
             new Identical(
                 [
                     'accepted' => $motDePasse->getValue(),
@@ -140,7 +140,7 @@ class InscriptionForm extends Form
                 ]
             )
         );
-        $this->add($mot_de_passe_confirmation);
+        $this->add($password_confirmation);
 
         $oBoutonDeSoumission = new Submit('bouton_de_soumission', [
             'class' => 'btn btn-primary',

@@ -13,7 +13,7 @@
                     <div class="card mb-4 shadow-sm">
                         <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
                             <rect width="100%" height="100%" fill="#55595c"></rect>
-                            <text x="40%" y="50%" fill="#eceeef" dy=".3em">{{ cour.nom }}</text>
+                            <text x="40%" y="50%" fill="#eceeef" dy=".3em">{{ cour.lastname }}</text>
                         </svg>
                         <div class="card-body">
                             <p class="card-text">{{ cour.description }}</p>

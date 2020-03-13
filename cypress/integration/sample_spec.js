@@ -12,7 +12,7 @@ describe('Check feature of NovaMooc', function() {
             .type('john.doe@les-enovateurs.com')
             .should('have.value', 'john.doe@les-enovateurs.com')
 
-            cy.get(":input[name='mot_de_passe']")
+            cy.get(":input[name='password']")
             .type('azerty')
             .should('have.value', 'azerty')
         })

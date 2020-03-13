@@ -15,7 +15,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-book"></i></span>
             </div>
-            {{ cours_form.render("nom") }}
+            {{ cours_form.render("lastname") }}
         </div>
 
         <div class="input-group mb-3">

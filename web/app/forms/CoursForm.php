@@ -14,26 +14,26 @@ class CoursForm extends Form
 
     public function initialize($oCours)
     {
-        // nom
-        $nom = new Text('nom',
+        // lastname
+        $lastname = new Text('lastname',
             [
-                'placeholder' => ucfirst('saisissez un nom de cours'),
+                'placeholder' => ucfirst('saisissez un lastname de cours'),
                 'class'       => 'form-control',
                 'required'    => 'required'
             ]
         );
-        $nom->setLabel(ucfirst('nom'));
-        $nom->addValidators(
+        $lastname->setLabel(ucfirst('lastname'));
+        $lastname->addValidators(
             [
                 new PresenceOf
                 (
                     [
-                        'message' => ucfirst('un nom de cours est requis')
+                        'message' => ucfirst('un lastname de cours est requis')
                     ]
                 )
             ]
         );
-        $this->add($nom);        
+        $this->add($lastname);        
         
         // description
         $description = new Textarea('description',

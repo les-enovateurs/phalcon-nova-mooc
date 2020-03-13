@@ -1,7 +1,7 @@
 {
   "name": "API Gestion d'utilisateur",
   "version": "0.0.1",
-  "description": "API REST permettant de gérer les utilisateurs présent dans une table.",
+  "description": "API REST permettant de gérer les nov_users présent dans une table.",
   "title": "Documentation API - Utilisateur",
   "url": "http://127.0.0.1",
   "sampleUrl": false,

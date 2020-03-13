@@ -9,7 +9,7 @@ class CoursController extends ControllerBase
      * @apiName nouveauCours
      * @apiGroup Cours
      * @apiExample {curl} Exemple d'utilisation:
-     *     curl -i -X POST -d '{"token":"...", "nom":"Phalcon", "description":"Un formation dingue"}' http://127.0.0.1/api/cours/nouveau
+     *     curl -i -X POST -d '{"token":"...", "lastname":"Phalcon", "description":"Un formation dingue"}' http://127.0.0.1/api/cours/nouveau
      *
      * @apiSuccess {Object} payload Contient les informations du cours fraîchement crée
      *
@@ -19,7 +19,7 @@ class CoursController extends ControllerBase
     {
         $aCours                    = $this->request->getJsonRawBody(true);
         $oUtilisateurConnecte      = $this->di->getUtilisateur();
-        $aCours['utilisateurs_id'] = $oUtilisateurConnecte->id;
+        $aCours['nov_users_id'] = $oUtilisateurConnecte->id;
 
         $oCours      = new Cours();
         $oCours->assign($aCours);
@@ -52,9 +52,9 @@ class CoursController extends ControllerBase
         $aToken               = $this->request->getJsonRawBody(true);
         $oUtilisateurConnecte = $this->di->getUtilisateur();
         return Cours::findFirst([
-            'conditions' => 'utilisateurs_id = :utilisateurs_id: and id = :id:',
+            'conditions' => 'nov_users_id = :nov_users_id: and id = :id:',
             'bind'       => [
-                'utilisateurs_id' => $oUtilisateurConnecte->id,
+                'nov_users_id' => $oUtilisateurConnecte->id,
                 'id'              => $nCoursId
             ]
         ]);
@@ -66,7 +66,7 @@ class CoursController extends ControllerBase
      * @apiName modifierCours
      * @apiGroup Cours
      * @apiExample {curl} Exemple d'utilisation:
-     *     curl -i -X GET -d '{"token":"...", "nom":"Phalcon 4", "description":"Nouvelle version de Phalcon"}' http://127.0.0.1/api/cours/modifier/1
+     *     curl -i -X GET -d '{"token":"...", "lastname":"Phalcon 4", "description":"Nouvelle version de Phalcon"}' http://127.0.0.1/api/cours/modifier/1
      *
      * @apiSuccess {Object} payload Contient les informations du cours actualisées
      *
@@ -77,12 +77,12 @@ class CoursController extends ControllerBase
         $nCoursId                  = $this->dispatcher->getParam('id');
         $aCours                    = $this->request->getJsonRawBody(true);
         $oUtilisateurConnecte      = $this->di->getUtilisateur();
-        $aCours['utilisateurs_id'] = $oUtilisateurConnecte->id;
+        $aCours['nov_users_id'] = $oUtilisateurConnecte->id;
 
         $oCours = Cours::findFirst([
-            'conditions' => 'utilisateurs_id = :utilisateurs_id: and id = :id:',
+            'conditions' => 'nov_users_id = :nov_users_id: and id = :id:',
             'bind'       => [
-                'utilisateurs_id' => $oUtilisateurConnecte->id,
+                'nov_users_id' => $oUtilisateurConnecte->id,
                 'id'              => $nCoursId
             ]
         ]);
@@ -122,9 +122,9 @@ class CoursController extends ControllerBase
         $oUtilisateurConnecte = $this->di->getUtilisateur();
 
         $oCours = Cours::findFirst([
-            'conditions' => 'utilisateurs_id = :utilisateurs_id: and id = :id:',
+            'conditions' => 'nov_users_id = :nov_users_id: and id = :id:',
             'bind'       => [
-                'utilisateurs_id' => $oUtilisateurConnecte->id,
+                'nov_users_id' => $oUtilisateurConnecte->id,
                 'id'              => $nCoursId
             ]
         ]);

@@ -42,7 +42,7 @@ class ConnexionForm extends Form
         $this->add($email);
 
         // Mot de passe
-        $motDePasse = new Password('mot_de_passe',
+        $motDePasse = new Password('password',
             [
                 'placeholder' => ucfirst('saisissez votre mot de passe'),
                 'class'       => 'form-control',

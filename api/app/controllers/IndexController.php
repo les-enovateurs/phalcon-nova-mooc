@@ -1,6 +1,6 @@
 <?php
 
-use NovaMooc\Models\Utilisateurs;
+use NovaMooc\Models\NovUsers;
 
 class IndexController extends ControllerBase
 {
@@ -13,9 +13,9 @@ class IndexController extends ControllerBase
     /**
      * @api {post} /api/connexion Permet d'authentifier un utilisateur
      * @apiName connexionUtilisateur
-     * @apiGroup Utilisateurs
+     * @apiGroup NovUsers
      * @apiExample {curl} Exemple d'utilisation:
-     *     curl -i -X POST -d '{"email":"conor.doe@les-enovateurs.com", "mot_de_passe":"azert"}' http://127.0.0.1/api/connexion
+     *     curl -i -X POST -d '{"email":"conor.doe@les-enovateurs.com", "password":"azert"}' http://127.0.0.1/api/connexion
      *
      * @apiSuccess {Object} payload Contient les informations de l'utilisateur fraîchement connecté
      *
@@ -25,15 +25,15 @@ class IndexController extends ControllerBase
     {
         $oUtilisateur = $this->request->getJsonRawBody();
 
-        $oUtilisateurConnexion = Utilisateurs::findFirst([
-            'conditions' => 'email = :email: and mot_de_passe = :mot_de_passe:',
+        $oUtilisateurConnexion = NovUsers::findFirst([
+            'conditions' => 'email = :email: and password = :password:',
             'bind'       => [
                 'email'        => $oUtilisateur->email,
-                'mot_de_passe' => $oUtilisateur->mot_de_passe
+                'password' => $oUtilisateur->password
             ]
         ]);
 
-        if ($oUtilisateurConnexion instanceof Utilisateurs) {
+        if ($oUtilisateurConnexion instanceof NovUsers) {
             return [
                 'utilisateur' => $oUtilisateurConnexion,
                 'token'       => SecurityPlugin::genereToken($this->config, $oUtilisateurConnexion->id)
@@ -46,9 +46,9 @@ class IndexController extends ControllerBase
     /**
      * @api {post} /api/inscription Création d'un nouvel utilisateur
      * @apiName InscriptionUtilisateur
-     * @apiGroup Utilisateurs
+     * @apiGroup NovUsers
      * @apiExample {curl} Exemple d'utilisation:
-     *     curl -i -X POST -d '{"nom":"DOE","prenom":"Conor","email":"conor.doe@les-enovateurs.com", "mot_de_passe":"azert"}' http://127.0.0.1/api/inscription
+     *     curl -i -X POST -d '{"lastname":"DOE","firstname":"Conor","email":"conor.doe@les-enovateurs.com", "password":"azert"}' http://127.0.0.1/api/inscription
      *
      * @apiSuccess {Object} payload Renvoie le nouvel utilisateur crée
      *
@@ -58,7 +58,7 @@ class IndexController extends ControllerBase
     {
         $aUtilisateur = $this->request->getJsonRawBody(true);
 
-        $oUtilisateur = new Utilisateurs();
+        $oUtilisateur = new NovUsers();
         $oUtilisateur->assign($aUtilisateur);
         $bSauvegarde  = $oUtilisateur->save();
 

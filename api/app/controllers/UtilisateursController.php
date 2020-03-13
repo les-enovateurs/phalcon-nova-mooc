@@ -1,13 +1,13 @@
 <?php
 
-use NovaMooc\Models\Utilisateurs;
+use NovaMooc\Models\NovUsers;
 
-class UtilisateursController extends ControllerBase
+class NovUsersController extends ControllerBase
 {
     /**
      * @api {get} /api/utilisateur Récupération de l'utilisateur connecté
      * @apiName infoUtilisateur
-     * @apiGroup Utilisateurs
+     * @apiGroup NovUsers
      * @apiExample {curl} Exemple d'utilisation:
      *     curl -i -X GET -d '{"token":"..."}' http://127.0.0.1/api/utilisateur
      *
@@ -24,7 +24,7 @@ class UtilisateursController extends ControllerBase
     /**
      * @api {get} /api/cours Récupére les cours gérés par l'utilisateur
      * @apiName coursUtilisateur
-     * @apiGroup Utilisateurs
+     * @apiGroup NovUsers
      * @apiExample {curl} Exemple d'utilisation:
      *     curl -i -X GET -d '{"token":"..."}' http://127.0.0.1/api/cours
      *
@@ -36,7 +36,7 @@ class UtilisateursController extends ControllerBase
     {
         $oUtilisateurConnecte = $this->di->getUtilisateur();
 
-        if ($oUtilisateurConnecte instanceof Utilisateurs) {
+        if ($oUtilisateurConnecte instanceof NovUsers) {
             return $oUtilisateurConnecte->cours;
         }
     }
