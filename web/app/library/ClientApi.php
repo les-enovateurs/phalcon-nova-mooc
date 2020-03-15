@@ -36,7 +36,7 @@ class ClientApi
         $sMethode = strtoupper($sMethode);
 
         if (false === in_array($sMethode, self::METHOD_ACCEPT)) {
-            throw new \Exception('La méthode ' . $sMethode . ' est bloqué', \SecurityPlugin::CODE_ERREUR_SERVEUR);
+            throw new \Exception('La méthode ' . $sMethode . ' est bloqué', \SecurityPlugin::CODE_ERROR_SERVER);
             return false;
         }
 
@@ -49,8 +49,8 @@ class ClientApi
                 case 'GuzzleHttp\Exception\ClientException':
                 case 'GuzzleHttp\Exception\ServerException':
 
-                    if (\SecurityPlugin::CODE_ERREUR_APPLICATIF == $e->getCode()) {
-                        return new ApplicationErreur($e->getResponse()->getBody()->getContents());
+                    if (\SecurityPlugin::CODE_ERROR_APP == $e->getCode()) {
+                        return new AppError($e->getResponse()->getBody()->getContents());
                     }
                     throw new \Exception($e->getResponse()->getBody()->getContents(), $e->getCode());
                     break;
@@ -58,9 +58,8 @@ class ClientApi
                     throw new \Exception($e->getMessage(), $e->getCode());
             }
         }
+        $oContent = json_decode($oReponse->getBody());
 
-        $oContenu = json_decode($oReponse->getBody());
-
-        return $oContenu->payload;
+        return $oContent->payload;
     }
 }

@@ -2,36 +2,36 @@
 
 $router = $di->getRouter();
 
-$router->add('/sante', [
+$router->add('/health', [
     'controller' => 'index',
-    'action'     => 'sante',
-])->setName('sante');
+    'action'     => 'health',
+])->setName('health');
 
-/** Authentification */
-// Inscription
-$router->add('/inscription', [
+/** Authentication */
+// Register
+$router->add('/register', [
     'controller' => 'index',
-    'action'     => 'inscription',
-])->setName('inscription');
+    'action'     => 'register',
+])->setName('register');
 
-$router->add('/deconnexion', [
+$router->add('/logout', [
     'controller' => 'index',
-    'action'     => 'deconnexion',
-])->setName('deconnexion');
+    'action'     => 'logout',
+])->setName('logout');
 
-$router->add('/cours/nouveau', [
-    'controller' => 'cours',
-    'action'     => 'nouveau',
-])->setName('nouveau_cours');
+$router->add('/course/new', [
+    'controller' => 'courses',
+    'action'     => 'new',
+])->setName('new_course');
 
-$router->add('/cours/modifier/{id:[0-9]+}', [
-    'controller' => 'cours',
-    'action'     => 'modifier',
-])->setName('modifier_cours');
+$router->add('/course/update/{id:[0-9]+}', [
+    'controller' => 'courses',
+    'action'     => 'update',
+])->setName('update_course');
 
-$router->add('/cours/supprimer/{id:[0-9]+}', [
-    'controller' => 'cours',
-    'action'     => 'supprimer',
-])->setName('supprimer_cours');
+$router->add('/course/delete/{id:[0-9]+}', [
+    'controller' => 'courses',
+    'action'     => 'delete',
+])->setName('delete_course');
 
 $router->handle($_GET['_url'] ?? '/');

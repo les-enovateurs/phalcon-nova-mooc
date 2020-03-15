@@ -2,7 +2,7 @@
 
 use Phalcon\Mvc\View;
 
-class ErreurController extends ControllerBase
+class ErrorController extends ControllerBase
 {
     public function code401Action()
     {

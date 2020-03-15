@@ -1,109 +1,105 @@
 <?php
 
-use NovaMooc\Forms\InscriptionForm;
-use NovaMooc\Forms\ConnexionForm;
+use NovaMooc\Forms\RegisterForm;
+use NovaMooc\Forms\ConnectionForm;
 
 class IndexController extends ControllerBase
 {
 
     public function indexAction()
     {
-        $this->tag->appendTitle(' - Connexion');
+        $this->tag->appendTitle(' - Login');
 
-        $oConnexionForm = null;
+        $oConnectionForm = null;
 
         if (true === $this->request->isPost()) {
-            $oConnexionForm = new ConnexionForm();
+            $oConnectionForm = new ConnectionForm();
 
-            if (true === $oConnexionForm->isValid($this->request->getPost())) {
-                $oContenu = $this->api->post('connexion', $this->request->getPost());
+            if (true === $oConnectionForm->isValid($this->request->getPost())) {
+                $oContent = $this->api->post('login', $this->request->getPost());
 
-                if ($oContenu instanceof \NovaMooc\Library\ApplicationErreur) {
-                    $this->view->erreurs = $oContenu->getMessage();
+                if ($oContent instanceof \NovaMooc\Library\AppError) {
+                    $this->view->errors = $oContent->getMessage();
                 } else {
-                    $this->session->set('utilisateur', $oContenu->utilisateur);
-                    $this->session->set('token', $oContenu->token);
+                    $this->session->set('user', $oContent->user);
+                    $this->session->set('token', $oContent->token);
 
-                    $this->logger->error(json_encode([
-                        'token' => $oContenu->token
-                    ]));
-
-                    $this->response->redirect('enseignant');
+                    $this->response->redirect('teacher');
                     return $this->response->send();
                 }
             } else {
-                $aMessages = $oConnexionForm->getMessages();
-                $sErreurs  = '';
+                $aMessages = $oConnectionForm->getMessages();
+                $sErrors  = '';
 
                 foreach ($aMessages as $sMessage) {
-                    $sErreurs .= '- ' . $sMessage . '<br />';
+                    $sErrors .= '- ' . $sMessage . '<br />';
                 }
 
-                $this->view->erreurs = $sErreurs;
+                $this->view->errors = $sErrors;
             }
         } else {
-            $oConnexionForm = new ConnexionForm(null);
+            $oConnectionForm = new ConnectionForm(null);
         }
 
-        $this->view->connexion_form = $oConnexionForm;
+        $this->view->connection_form = $oConnectionForm;
     }
 
-    public function inscriptionAction()
+    public function registerAction()
     {
-        $this->tag->appendTitle(' - Inscription');
+        $this->tag->appendTitle(' - Register');
 
-        $oInscriptionForm = null;
+        $oRegisterForm = null;
 
         if (true === $this->request->isPost()) {
-            $oInscriptionForm = new InscriptionForm();
+            $oRegisterForm = new RegisterForm();
 
-            if (true === $oInscriptionForm->isValid($this->request->getPost())) {
-                $oContenu = $this->api->post('inscription', $this->request->getPost());
-                if ($oContenu instanceof \NovaMooc\Library\ApplicationErreur) {
-                    $this->view->erreurs = $oContenu->getMessage();
+            if (true === $oRegisterForm->isValid($this->request->getPost())) {
+                $oContent = $this->api->post('register', $this->request->getPost());
+                if ($oContent instanceof \NovaMooc\Library\AppError) {
+                    $this->view->errors = $oContent->getMessage();
                 } else {
-                    $this->session->set('utilisateur', $oContenu->utilisateur);
-                    $this->session->set('token', $oContenu->token);
+                    $this->session->set('user', $oContent->user);
+                    $this->session->set('token', $oContent->token);
 
                     $this->logger->error(json_encode([
-                        'token' => $oContenu->token
+                        'token' => $oContent->token
                     ]));
 
-                    $this->response->redirect('enseignant');
+                    $this->response->redirect('teacher');
                     return $this->response->send();
                 }
             } else {
-                $aMessages = $oInscriptionForm->getMessages();
-                $sErreurs  = '';
+                $aMessages = $oRegisterForm->getMessages();
+                $sErrors  = '';
 
                 foreach ($aMessages as $sMessage) {
-                    $sErreurs .= '- ' . $sMessage . '<br />';
+                    $sErrors .= '- ' . $sMessage . '<br />';
                 }
 
-                $this->view->erreurs = $sErreurs;
+                $this->view->errors = $sErrors;
             }
         } else {
-            $oInscriptionForm = new InscriptionForm(null);
+            $oRegisterForm = new RegisterForm(null);
         }
 
-        $this->view->inscription_form = $oInscriptionForm;
+        $this->view->register_form = $oRegisterForm;
     }
 
-    public function deconnexionAction()
+    public function logoutAction()
     {
         $this->session->destroy();
 
         $this->response->redirect('/');
     }
 
-    public function santeAction()
+    public function healthAction()
     {
-        $oContenu = $this->api->get('sante');
+        $oContent = $this->api->get('health');
 
-        if ($oContenu instanceof \NovaMooc\Library\ApplicationErreur) {
-            $this->view->erreurs = $oContenu->getMessage();
+        if ($oContent instanceof \NovaMooc\Library\AppError) {
+            $this->view->errors = $oContent->getMessage();
         } else {
-            $this->view->message = $oContenu->etat;
+            $this->view->message = $oContent->state;
         }
     }
 }

@@ -32,6 +32,6 @@ return new \Phalcon\Config([
         'baseUri'        => preg_replace('/public([\/\\\\])index.php$/', '', $_SERVER["PHP_SELF"]),
     ],
     'security'    => [
-        'cle'                => 'gMp0ScgdeH/mPL^.0!=yUvlQ\'YX8j$S5UQB,%|Rg{C,/}6SZn$)*>%(Lm+#<Fve'
+        'key'                => 'gMp0ScgdeH/mPL^.0!=yUvlQ\'YX8j$S5UQB,%|Rg{C,/}6SZn$)*>%(Lm+#<Fve'
     ]
 ]);

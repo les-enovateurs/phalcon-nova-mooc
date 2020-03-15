@@ -1,34 +1,32 @@
-{% extends 'layouts/non_connecte.volt' %}
-
-{% block contenu %}
-    {%  if erreurs is defined %}
+{% extends 'layouts/unconnected.volt' %}{% block content %}
+    {%  if errors is defined %}
         <div class="alert alert-danger">
-            {{ erreurs }}
+            {{ errors }}
         </div>
     {% endif %}
 
     <form method="post" class="form-centrer text-center">
         <img class="mb-4" src="{{ url('img/logo72.png')}}" alt="logo">
-        <h1 class="h3 mb-5 font-weight-normal">Connexion à NovaMooc</h1>
+        <h1 class="h3 mb-5 font-weight-normal">Login to NovaMooc</h1>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-at"></i></span>
             </div>
-            {{ connexion_form.render("email") }}
+            {{ connection_form.render("email") }}
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
-            {{ connexion_form.render("password") }}
+            {{ connection_form.render("password") }}
         </div>
 
         <div class="mb-3">
-            {{ connexion_form.render('bouton_de_soumission') }}
+            {{ connection_form.render('submit_button') }}
         </div>
 
-        <small>Si vous n'avez pas de compte, <a href="{{ url("inscription") }}" alt="inscription">cliquez-ici pour en crée un !</a></small>
+        <small>If you don't have an account,<a href="{{ url("register") }}" alt="register"> click here to create one!</a></small>
     </form>
 {% endblock %}

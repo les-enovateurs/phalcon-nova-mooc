@@ -9,36 +9,36 @@ use Phalcon\Forms\Element\Submit;
 
 use Phalcon\Validation\Validator\PresenceOf;
 
-class CoursForm extends Form
+class CourseForm extends Form
 {
 
     public function initialize($oCours)
     {
-        // lastname
-        $lastname = new Text('lastname',
+        // title
+        $title = new Text('title',
             [
-                'placeholder' => ucfirst('saisissez un lastname de cours'),
+                'placeholder' => ucfirst('course\'s title'),
                 'class'       => 'form-control',
                 'required'    => 'required'
             ]
         );
-        $lastname->setLabel(ucfirst('lastname'));
-        $lastname->addValidators(
+        $title->setLabel(ucfirst('title'));
+        $title->addValidators(
             [
                 new PresenceOf
                 (
                     [
-                        'message' => ucfirst('un lastname de cours est requis')
+                        'message' => ucfirst('the course\'s title is required')
                     ]
                 )
             ]
         );
-        $this->add($lastname);        
+        $this->add($title);
         
         // description
         $description = new Textarea('description',
             [
-                'placeholder' => ucfirst('saisissez une description de cours'),
+                'placeholder' => ucfirst('a course\'s description'),
                 'class'       => 'form-control'
             ]
         );
@@ -46,11 +46,11 @@ class CoursForm extends Form
         $this->add($description);
         
 
-        $oBoutonDeSoumission = new Submit('bouton_de_soumission', [
+        $oSubmitButton = new Submit('submit_button', [
             'class' => 'btn btn-primary',
         ]);
-        $oBoutonDeSoumission->setDefault(ucfirst('envoyer'));
+        $oSubmitButton->setDefault(ucfirst('send'));
 
-        $this->add($oBoutonDeSoumission);
+        $this->add($oSubmitButton);
     }
 }

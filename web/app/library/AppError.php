@@ -6,7 +6,7 @@ namespace NovaMooc\Library;
 
 use GuzzleHttp\Client as GuzzleClient;
 
-class ApplicationErreur
+class AppError
 {
     private $sMessage;
 
@@ -14,7 +14,7 @@ class ApplicationErreur
     {
         $oReponse = json_decode($sJsonMessage);
         if (JSON_ERROR_NONE !== json_last_error()) {
-            throw new \Exception('JSON malformé : '.$sJsonMessage, self::CODE_ERREUR_SERVEUR);
+            throw new \Exception('JSON malformed : '.$sJsonMessage, self::CODE_ERROR_SERVER);
             return false;
         }
 

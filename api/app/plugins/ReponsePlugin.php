@@ -10,7 +10,7 @@ class ReponsePlugin extends Injectable
     {
         $this->response->setJsonContent(
             [
-                'code'    => SecurityPlugin::CODE_SUCCES,
+                'code'    => SecurityPlugin::CODE_SUCCESS,
                 'status'  => 'success',
                 'message' => '',
                 'payload' => $oDispatcher->getReturnedValue()

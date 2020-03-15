@@ -11,63 +11,63 @@ use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Validation\Validator\Email;
 
 
-class ConnexionForm extends Form
+class ConnectionForm extends Form
 {
 
-    public function initialize($oUtilisateur)
+    public function initialize($oUser)
     {
         // email
         $email = new Text('email',
             [
-                'placeholder' => ucfirst('saisissez votre adresse e-mail'),
+                'placeholder' => ucfirst('your e-mail address'),
                 'class'       => 'form-control',
                 'required'    => 'required'
             ]
         );
-        $email->setLabel(ucfirst('adresse e-mail'));
+        $email->setLabel(ucfirst('e-mail address'));
         $email->addValidators(
             [
                 new PresenceOf(
                     [
-                        'message' => ucfirst('votre adresse e-mail est requise')
+                        'message' => ucfirst('your e-mail address is required')
                     ]
                 ),
                 new Email(
                     [
-                        'message' => ucfirst('votre adresse e-mail est invalide')
+                        'message' => ucfirst('your e-mail address is invalid')
                     ]
                 )
             ]
         );
         $this->add($email);
 
-        // Mot de passe
-        $motDePasse = new Password('password',
+        // Password
+        $password = new Password('password',
             [
-                'placeholder' => ucfirst('saisissez votre mot de passe'),
+                'placeholder' => ucfirst('your password'),
                 'class'       => 'form-control',
                 'required'    => 'required'
             ]
         );
-        $motDePasse->setLabel(ucfirst('mot de passe'));
-        $motDePasse->addValidators(
+        $password->setLabel(ucfirst('password'));
+        $password->addValidators(
             [
                 new PresenceOf(
                     [
-                        'message' => ucfirst('votre mot de passe est requis')
+                        'message' => ucfirst('your password is required')
                     ]
                 )
             ]
         );
 
-        $this->add($motDePasse);
+        $this->add($password);
 
-        $oBoutonDeSoumission = new Submit('bouton_de_soumission', [
+        $oSubmitButton = new Submit('submit_button', [
             'class' => 'btn btn-primary',
-            'id'    => 'bouton_de_soumission'
+            'id'    => 'submit_button'
         ]);
-        $oBoutonDeSoumission->setDefault(ucfirst('se connecter'));
+        $oSubmitButton->setDefault(ucfirst('login'));
 
-        $this->add($oBoutonDeSoumission);
+        $this->add($oSubmitButton);
     }
 }

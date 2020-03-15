@@ -1,9 +1,7 @@
-{% extends 'layouts/non_connecte.volt' %}
-
-{% block contenu %}
-    {%  if erreurs is defined %}
+{% extends 'layouts/unconnected.volt' %}{% block content %}
+    {%  if errors is defined %}
         <div class="alert alert-danger">
-            {{ erreurs }}
+            {{ errors }}
         </div>
     {% endif %}
 

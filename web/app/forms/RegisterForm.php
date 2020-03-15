@@ -13,23 +13,23 @@ use Phalcon\Validation\Validator\Identical;
 use Phalcon\Validation\Validator\Email;
 
 
-class InscriptionForm extends Form
+class RegisterForm extends Form
 {
 
     public function initialize($oUtilisateur)
     {
         // firstname
         $firstname = new Text('firstname', [
-            'placeholder' => ucfirst('saisissez votre prélastname'),
+            'placeholder' => ucfirst('your firstname'),
             'class'       => 'form-control',
             'required'    => 'required'
         ]);
-        $firstname->setLabel(ucfirst('prélastname'));
+        $firstname->setLabel(ucfirst('firstname'));
         $firstname->addValidators(
             [
                 new PresenceOf(
                     [
-                        'message' => ucfirst('votre prélastname est requis')
+                        'message' => ucfirst('your firstname is required')
                     ]
                 )
             ]
@@ -39,7 +39,7 @@ class InscriptionForm extends Form
         // lastname
         $lastname = new Text('lastname',
             [
-                'placeholder' => ucfirst('saisissez votre lastname'),
+                'placeholder' => ucfirst('your lastname'),
                 'class'       => 'form-control',
                 'required'    => 'required'
             ]);
@@ -49,7 +49,7 @@ class InscriptionForm extends Form
                 new PresenceOf
                 (
                     [
-                        'message' => ucfirst('votre lastname est requis')
+                        'message' => ucfirst('your lastname is required')
                     ]
                 )
             ]
@@ -59,18 +59,18 @@ class InscriptionForm extends Form
         // email
         $email = new Text('email',
             [
-                'placeholder' => ucfirst('saisissez votre adresse e-mail'),
+                'placeholder' => ucfirst('your e-mail address'),
                 'class'       => 'form-control',
                 'required'    => 'required'
             ]
         );
-        $email->setLabel(ucfirst('adresse e-mail'));
+        $email->setLabel(ucfirst('e-mail address'));
         $email->addValidators(
             [
                 new PresenceOf
                 (
                     [
-                        'message' => ucfirst('votre adresse e-mail est requise')
+                        'message' => ucfirst('your e-mail address is required')
                     ]
                 )
             ]
@@ -79,74 +79,74 @@ class InscriptionForm extends Form
             [
                 new Email(
                     [
-                        'message' => ucfirst('votre adresse e-mail est invalide')
+                        'message' => ucfirst('your e-mail address is invalid')
                     ]
                 )
             ]
         );
         $this->add($email);
 
-        // Mot de passe
-        $motDePasse = new Password('password',
+        // Password
+        $password = new Password('password',
             [
-                'placeholder' => ucfirst('saisissez votre mot de passe'),
+                'placeholder' => ucfirst('your password'),
                 'class'       => 'form-control',
                 'required'    => 'required'
             ]
         );
-        $motDePasse->setLabel(ucfirst('mot de passe'));
-        $motDePasse->addValidators(
+        $password->setLabel(ucfirst('password'));
+        $password->addValidators(
             [
                 new PresenceOf(
                     [
-                        'message' => ucfirst('votre mot de passe est requis')
+                        'message' => ucfirst('your password is required')
                     ]
                 )
             ]
         );
-        $motDePasse->addValidator(
+        $password->addValidator(
             new StringLength(
                 [
                     'min'            => 6,
                     'max'            => 20,
-                    'messageMaximum' => ucfirst('votre mot de passe est trop long, max 20 caractères'),
-                    'messageMinimum' => ucfirst('votre mot de passe est trop court, min 6 caractères')
+                    'messageMaximum' => ucfirst('your password is too long, max 20 caracters'),
+                    'messageMinimum' => ucfirst('your password is too short, min 6 caracters')
                 ]
             )
         );
-        $this->add($motDePasse);
+        $this->add($password);
 
-        // Mot de passe confirmation
+        // confirm password
         $password_confirmation = new Password('password_confirmation',
             [
-                'placeholder' => ucfirst('réecrivez votre mot de passe'),
+                'placeholder' => ucfirst('password confirmation'),
                 'class'       => 'form-control',
                 'required'    => 'required'
             ]);
 
-        $password_confirmation->setLabel(ucfirst('mot de passe de confirmation'));
+        $password_confirmation->setLabel(ucfirst('your confirmation password'));
         $password_confirmation->addValidator(
             new PresenceOf(
                 [
-                    'message' => ucfirst('le mot de passe de confirmation est requis')
+                    'message' => ucfirst('confirmation password is required')
                 ]
             )
         );
         $password_confirmation->addValidator(
             new Identical(
                 [
-                    'accepted' => $motDePasse->getValue(),
-                    'message'  => ucfirst('votre mot de passe de confirmation ne correspond pas au premier mot de passe')
+                    'accepted' => $password->getValue(),
+                    'message'  => ucfirst('your confirmation password is not the same that the first password')
                 ]
             )
         );
         $this->add($password_confirmation);
 
-        $oBoutonDeSoumission = new Submit('bouton_de_soumission', [
+        $oSubmitButton = new Submit('submit_button', [
             'class' => 'btn btn-primary',
         ]);
-        $oBoutonDeSoumission->setDefault(ucfirst('s\'inscrire'));
+        $oSubmitButton->setDefault(ucfirst('register'));
 
-        $this->add($oBoutonDeSoumission);
+        $this->add($oSubmitButton);
     }
 }

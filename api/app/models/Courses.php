@@ -2,7 +2,7 @@
 
 namespace NovaMooc\Models;
 
-class Cours extends \Phalcon\Mvc\Model
+class Courses extends \Phalcon\Mvc\Model
 {
 
     /**
@@ -15,7 +15,7 @@ class Cours extends \Phalcon\Mvc\Model
      *
      * @var string
      */
-    public $lastname;
+    public $title;
 
     /**
      *
@@ -30,9 +30,9 @@ class Cours extends \Phalcon\Mvc\Model
     public function initialize()
     {
         $this->setSchema("public");
-        $this->setSource("cours");
+        $this->setSource("nov_courses");
 
-        $this->belongsTo('nov_users_id', NovUsers::class, 'id', [ 'alias' => 'entreprise' ]);
+        $this->belongsTo('nov_users_id', Users::class, 'id', [ 'alias' => 'user' ]);
     }
 
     /**
@@ -40,7 +40,7 @@ class Cours extends \Phalcon\Mvc\Model
      *
      * @param mixed $parameters
      *
-     * @return Cours[]|\Phalcon\Mvc\Model\ResultSetInterface
+     * @return Courses[]|\Phalcon\Mvc\Model\ResultSetInterface
      */
     public static function find($parameters = null): \Phalcon\Mvc\Model\ResultsetInterface
     {
@@ -52,7 +52,7 @@ class Cours extends \Phalcon\Mvc\Model
      *
      * @param mixed $parameters
      *
-     * @return Cours|\Phalcon\Mvc\Model\ResultInterface
+     * @return Courses|\Phalcon\Mvc\Model\ResultInterface
      */
     public static function findFirst($parameters = null)
     {

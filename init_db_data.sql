@@ -19,18 +19,18 @@ INSERT INTO nov_users (lastname,firstname,email,password) VALUES
 ,('DOE','Sandrine','sandrine.doe@les-enovateurs.com','cvbn')
 ,('DOE','Philippe','philippe.doe@les-enovateurs.com','mlkj');
 
-CREATE TABLE cours (
+CREATE TABLE nov_courses (
 	id bigserial NOT NULL,
-	lastname varchar NOT NULL,
+	title varchar NOT NULL,
 	description varchar NULL,
 	nov_users_id  bigint NOT NULL REFERENCES nov_users (id),
-	CONSTRAINT cours_pk PRIMARY KEY (id)
+	CONSTRAINT courses_pk PRIMARY KEY (id)
 );
 
-INSERT INTO cours (lastname, description, nov_users_id) VALUES
-('Phalcon 3', 'Développez des applications web complexes et performantes en PHP.', 1),
-('Docker', 'Développez des architectures performantes.', 2),
-('AWS', 'Travaillez sur le cloud.', 3),
-('Git', 'Versionnez votre code.', 4),
-('Photoshop', 'Apprenez à retoucher vos photo.', 5),
-('Illustrator', 'Créez des images vectorielles.', 6);
+INSERT INTO nov_courses (title, description, nov_users_id) VALUES
+('Phalcon 3', 'Develop complex and powerful web applications in PHP.', 1),
+('Docker', 'Develop high-performance architectures.', 2),
+('AWS', 'Work on the cloud.', 3),
+('Git', 'Learn to versioning code', 4),
+('Photoshop', 'Learn how to touch up your photos.', 5),
+('Illustrator', 'Create vector images.', 6);

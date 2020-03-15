@@ -1,14 +1,14 @@
-### Connexion
-# curl -i -X POST -d '{"email":"john.doe@les-enovateurs.com","password":"d","token":null}' http://127.0.0.1/mooc_complet/api/connexion
-POST http://127.0.0.1:8080/api/connexion
+### connection
+# curl -i -X POST -d '{"email":"john.doe@les-enovateurs.com","password":"d","token":null}' http://127.0.0.1:8080/api/login
+POST http://127.0.0.1:8080/api/login
 Content-Type: application/x-www-form-urlencoded
 
 {"email":"john.doe@les-enovateurs.com","password":"azerty","token":null}
 
 ###
-GET http://127.0.0.1:8080/api/cours
+GET http://127.0.0.1:8080/api/user/courses
 Content-Type: application/x-www-form-urlencoded
 
-{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6IjVkYTc5MTcyZDQwNjIifQ.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODA4MCIsImF1ZCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDgwIiwianRpIjoiNWRhNzkxNzJkNDA2MiIsInV0aWxpc2F0ZXVyX2lkIjoxLCJpYXQiOjE1NzEyNjI4MzR9.yQL93wIBpdvqKVxl4REaaosfoY4A4wLOrjg3VcZpJe0"}
+{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE1ODQyOTE3Nzd9.slFwhe5nuISWa_CjXZoGUIGL9Qjq2cfyh4HSj9yARHE"}
 
 ###

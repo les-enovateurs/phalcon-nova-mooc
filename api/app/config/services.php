@@ -123,13 +123,13 @@ $di->setShared('session', function () {
 
 
 $di->set('dispatcher', function () use ($di) {
-    $oGestionnaireEvenements = new EventsManager();
+    $oEventsManager = new EventsManager();
 
-    $oGestionnaireEvenements->attach('dispatch', new SecurityPlugin());
-    $oGestionnaireEvenements->attach('dispatch:afterExecuteRoute', new ReponsePlugin());
+    $oEventsManager->attach('dispatch', new SecurityPlugin());
+    $oEventsManager->attach('dispatch:afterExecuteRoute', new ReponsePlugin());
 
     $oDispatcher = new Phalcon\Mvc\Dispatcher();
-    $oDispatcher->setEventsManager($oGestionnaireEvenements);
+    $oDispatcher->setEventsManager($oEventsManager);
 
     return $oDispatcher;
 });
@@ -148,10 +148,10 @@ $di->setShared('logger', function () {
     return $oLogger;
 });
 
-$di->set('utilisateur', function () {
+$di->set('user', function () {
     $oParameter = $this->getRequest()->getJsonRawBody();
     $nUserId    = SecurityPlugin::getUserIdFromToken($this->getConfig(), $oParameter->token);
-    $oUser      = NovaMooc\Models\NovUsers::findFirstById($nUserId);
+    $oUser      = NovaMooc\Models\Users::findFirstById($nUserId);
 
     return $oUser;
 });

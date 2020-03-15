@@ -6,34 +6,34 @@ use Phalcon\Mvc\Dispatcher;
 
 class SecurityPlugin extends Injectable
 {
-    const CODE_ERREUR_APPLICATIF   = 508;
-    const CODE_ERREUR_SERVEUR      = 500;
-    const CODE_ERREUR_NON_TROUVE   = 404;
-    const CODE_ERREUR_ACCES_REFUSE = 401;
-    const CODE_SUCCES              = 200;
+    const CODE_ERROR_APP            = 508;
+    const CODE_ERROR_SERVER         = 500;
+    const CODE_ERROR_NOT_FOUND      = 404;
+    const CODE_ERROR_ACCESS_DENIED  = 401;
+    const CODE_SUCCESS              = 200;
 
-    const PAGE_PUBLIC = [
-        'index/inscription',
+    const PUBLIC_ACCESS = [
+        'index/register',
         'index/index',
-        'index/sante',
-        'erreur/code401',
-        'erreur/code404',
-        'erreur/code500',
+        'index/health',
+        'error/code401',
+        'error/code404',
+        'error/code500',
     ];
 
-    //Avant de gérer une requête extérieur
+    //Before handling an external request
     public function beforeHandleRoute(Event $oEvent, Dispatcher $oDispatcher)
     {
-        //Vérification de l'adresse IP entrante
-        $aListeNoirIp = [
+        //Checking the incoming IP address
+        $aExcludedIpList = [
             '1-free-share-buttons.com',
             'adviceforum.info'
         ];
 
-        $sAdresseIp = $this->request->getClientAddress();
+        $sIpAdress = $this->request->getClientAddress();
 
-        if (true === in_array($sAdresseIp, $aListeNoirIp)) {
-            throw new \Exception('Accès interdit à cette page', self::CODE_ERREUR_ACCES_REFUSE);
+        if (true === in_array($sIpAdress, $aExcludedIpList)) {
+            throw new \Exception('Access denied', self::CODE_ERROR_ACCESS_DENIED);
 
             return false;
         }
@@ -43,28 +43,27 @@ class SecurityPlugin extends Injectable
 
     public function beforeExecuteRoute(Event $oEvent, Dispatcher $oDispatcher)
     {
-
-        $oUtilisateur = null;
-        if (true === $this->session->has('utilisateur')) {
-            $oUtilisateur            = $this->session->get('utilisateur');
-            $this->view->utilisateur = $oUtilisateur;
+        $oUser = null;
+        if (true === $this->session->has('user')) {
+            $oUser            = $this->session->get('user');
+            $this->view->user = $oUser;
         }
 
-        $sControleur = $oDispatcher->getControllerName();
+        $sController = $oDispatcher->getControllerName();
         $sAction     = $oDispatcher->getActionName();
 
-        if (true === is_null($oUtilisateur)
-            && false === in_array($sControleur . '/' . $sAction, self::PAGE_PUBLIC)){
-            throw new \Exception('Accès interdit à cette page', self::CODE_ERREUR_ACCES_REFUSE);
+        if (true === is_null($oUser)
+            && false === in_array($sController . '/' . $sAction, self::PUBLIC_ACCESS)){
+            throw new \Exception('Access denied', self::CODE_ERROR_ACCESS_DENIED);
 
             return false;
         }
     }
 
-    // Gestion de page introuvable
+    // Handle page not found
     public function beforeNotFoundAction()
     {
-        throw new \Exception('Page introuvable', self::CODE_ERREUR_NON_TROUVE);
+        throw new \Exception('Not Found', self::CODE_ERROR_NOT_FOUND);
 
         return false;
     }
@@ -76,12 +75,12 @@ class SecurityPlugin extends Injectable
             'message' => $oException->getMessage()
         ]));
 
-        if (true === in_array($oException->getCode(), [ self::CODE_ERREUR_ACCES_REFUSE, self::CODE_ERREUR_NON_TROUVE ])) {
-            $this->response->redirect('erreur/code' . $oException->getCode());
+        if (true === in_array($oException->getCode(), [ self::CODE_ERROR_ACCESS_DENIED, self::CODE_ERROR_NOT_FOUND ])) {
+            $this->response->redirect('error/code' . $oException->getCode());
             return $this->response->send();
         }
 
-        $this->response->redirect('erreur/code' . self::CODE_ERREUR_SERVEUR);
+        $this->response->redirect('error/code' . self::CODE_ERROR_SERVER);
         return $this->response->send();
     }
 }

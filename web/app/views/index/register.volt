@@ -1,56 +1,54 @@
-{% extends 'layouts/non_connecte.volt' %}
-
-{% block contenu %}
-    {%  if erreurs is defined %}
+{% extends 'layouts/unconnected.volt' %}{% block content %}
+    {%  if errors is defined %}
         <div class="alert alert-danger">
-            {{ erreurs }}
+            {{ errors }}
         </div>
     {% endif %}
 
     <form method="post" class="form-centrer text-center">
         <img class="mb-4" src="{{ url('img/logo72.png')}}" alt="logo">
-        <h1 class="h3 mb-3 font-weight-normal">Inscription à NovaMooc</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Register to NovaMooc</h1>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-address-card"></i></span>
             </div>
-            {{ inscription_form.render("lastname") }}
+            {{ register_form.render("lastname") }}
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-address-card"></i></span>
             </div>
-            {{ inscription_form.render("firstname") }}
+            {{ register_form.render("firstname") }}
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-at"></i></span>
             </div>
-            {{ inscription_form.render("email") }}
+            {{ register_form.render("email") }}
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
-            {{ inscription_form.render("password") }}
+            {{ register_form.render("password") }}
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
-            {{ inscription_form.render("password_confirmation") }}
+            {{ register_form.render("password_confirmation") }}
         </div>
 
         <div class="mb-3">
-            {{ inscription_form.render('bouton_de_soumission') }}
+            {{ register_form.render('submit_button') }}
         </div>
 
-        <small>Si vous avez déjà un compte, <a href="{{ url("/") }}" alt="connexion">cliquez-ici pour vous connecter</a></small>
+        <small>If you already have an account,<a href="{{ url("/") }}" alt="connection"> click here to login</a></small>
 
     </form>
 {% endblock %}

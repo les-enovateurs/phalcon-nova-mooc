@@ -10,40 +10,38 @@ use Lcobucci\JWT\Builder;
 
 class SecurityPlugin extends Injectable
 {
-    const CODE_ERREUR_APPLICATIF   = 508;
-    const CODE_ERREUR_SERVEUR      = 500;
-    const CODE_ERREUR_NON_TROUVE   = 404;
-    const CODE_ERREUR_ACCES_REFUSE = 401;
-    const CODE_SUCCES              = 200;
+    const CODE_ERROR_APP            = 508;
+    const CODE_ERROR_SERVER         = 500;
+    const CODE_ERROR_NOT_FOUND      = 404;
+    const CODE_ERROR_ACCESS_DENIED  = 401;
+    const CODE_SUCCESS              = 200;
 
-    //Avant de gérer une requête extérieur
+    //Before handling an external request
     public function beforeHandleRoute(Event $oEvent, Dispatcher $oDispatcher)
     {
-        //Vérification de l'adresse IP entrante
-        $aListeBlancheIp = [
+        //Checking the incoming IP address
+        $aIncludeListIP = [
             '127.0.0.1',
-            '192.168.99.100',
-            '192.168.48.1',
+            gethostbyname('mooc-web'),
             '::1'
         ];
 
-        $sAdresseIp      = $this->request->getClientAddress();
-        //echo $sAdresseIp;die;
-        if (false === in_array($sAdresseIp, $aListeBlancheIp)) {
-            throw new \Exception('Accès interdit à cette page', self::CODE_ERREUR_ACCES_REFUSE);
+        $sIpAdress      = $this->request->getClientAddress();
+        if (false === in_array($sIpAdress, $aIncludeListIP)) {
+            throw new \Exception('Access denied', self::CODE_ERROR_ACCESS_DENIED);
 
             return false;
         }
 
         if ($this->request->getHeader('ORIGIN')) {
-            $sOrigine = $this->request->getHeader('ORIGIN');
+            $sOrigin = $this->request->getHeader('ORIGIN');
         } else {
-            $sOrigine = '*';
+            $sOrigin = '*';
         }
 
-        //Ajout des informations CORS - Cross-Origin Resource Sharing
+        //Add informations about CORS - Cross-Origin Resource Sharing
         $this->response
-            ->setHeader('Access-Control-Allow-Origin', $sOrigine)
+            ->setHeader('Access-Control-Allow-Origin', $sOrigin)
             ->setHeader(
                 'Access-Control-Allow-Methods',
                 'GET,PUT,POST,DELETE,OPTIONS'
@@ -57,16 +55,16 @@ class SecurityPlugin extends Injectable
         return true;
     }
 
-    // Avant l'exécution d'une route
+    // Before execute the route
     public function beforeExecuteRoute(Event $oEvent, Dispatcher $oDispatcher)
     {
-        $sParametres = $this->request->getRawBody();
+        $sParameters = $this->request->getRawBody();
 
-        if('' !== $sParametres){
-            //Vérification des données reçu
+        if('' !== $sParameters){
+            //Check data received
             json_decode($this->request->getRawBody());
             if (JSON_ERROR_NONE !== json_last_error()) {
-                throw new \Exception('JSON malformé', self::CODE_ERREUR_SERVEUR);
+                throw new \Exception('JSON malformed', self::CODE_ERROR_SERVER);
 
                 return false;
             }
@@ -75,20 +73,20 @@ class SecurityPlugin extends Injectable
         return true;
     }
 
-    // Gestion de page introuvable
+    // Handle Error 404 - Not FOund
     public function beforeNotFoundAction()
     {
-        throw new \Exception('Page introuvable', self::CODE_ERREUR_NON_TROUVE);
+        throw new \Exception('Not Found', self::CODE_ERROR_NOT_FOUND);
 
         return false;
     }
 
     public function beforeException(Event $oEvent, Dispatcher $oDispatcher, \Exception $oException)
     {
-        $nCode          = self::CODE_ERREUR_SERVEUR;
-        $sMessageStatus = 'Serveur Erreur';
+        $nCode          = self::CODE_ERROR_SERVER;
+        $sMessageStatus = 'Serveur Error';
 
-        if (true === in_array($oException->getCode(), [ self::CODE_ERREUR_ACCES_REFUSE, self::CODE_ERREUR_NON_TROUVE, self::CODE_ERREUR_APPLICATIF ])) {
+        if (true === in_array($oException->getCode(), [ self::CODE_ERROR_ACCESS_DENIED, self::CODE_ERROR_NOT_FOUND, self::CODE_ERROR_APP ])) {
             $nCode          = $oException->getCode();
             $sMessageStatus = $oException->getMessage();
         }
@@ -96,7 +94,7 @@ class SecurityPlugin extends Injectable
         $this->response->setJsonContent(
             [
                 'code'    => $oException->getCode(),
-                'status'  => 'erreur',
+                'status'  => 'error',
                 'message' => $oException->getMessage(),
             ]
         );
@@ -106,19 +104,19 @@ class SecurityPlugin extends Injectable
         return $this->response->send();
     }
 
-    public static function genereToken($oConfig, $nId){
+    public static function generateToken($oConfig, $nId){
         return (new Builder())
-            ->withClaim('utilisateur_id', $nId)
+            ->withClaim('user_id', $nId)
             ->issuedAt(time())
-            ->getToken(new Lcobucci\JWT\Signer\Hmac\Sha256(), new \Lcobucci\JWT\Signer\Key($oConfig->security->cle))
+            ->getToken(new Lcobucci\JWT\Signer\Hmac\Sha256(), new \Lcobucci\JWT\Signer\Key($oConfig->security->key))
             ->__toString();
     }
 
     public static function getUserIdFromToken($oConfig, $sToken){
         $oToken  = (new Parser())->parse($sToken);
         if ($oToken instanceof \Lcobucci\JWT\Token
-            && true === $oToken->verify(new Lcobucci\JWT\Signer\Hmac\Sha256(), $oConfig->security->cle)) {
-            return $oToken->getClaim('utilisateur_id');
+            && true === $oToken->verify(new Lcobucci\JWT\Signer\Hmac\Sha256(), $oConfig->security->key)) {
+            return $oToken->getClaim('user_id');
         }
         return false;
     }
