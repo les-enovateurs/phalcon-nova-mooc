@@ -21,7 +21,7 @@ describe('Check feature of NovaMooc', function() {
         })
     
         it('Connect', function() {
-            cy.get("#bouton_de_soumission").click()
+            cy.get("#submit_button").click()
         })
 
         it('Check Dashboard', function() {
@@ -46,7 +46,7 @@ describe('Check feature of NovaMooc', function() {
         })
 
         it('Connect', function() {
-            cy.get("#bouton_de_soumission").click()
+            cy.get("#submit_button").click()
         })
 
         it('Add new course', function() {
