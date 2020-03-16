@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/les-enovateurs/phalcon-nova-mooc#readme",
   "devDependencies": {
-    "cypress": "3.8.3"
+    "cypress": "^3.8.3",
+    "cypress-intellij-reporter": "0.0.4"
   }
 }
