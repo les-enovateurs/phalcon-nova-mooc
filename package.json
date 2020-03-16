@@ -29,5 +29,8 @@
   "devDependencies": {
     "cypress": "^4.1.0",
     "cypress-intellij-reporter": "0.0.4"
+  },
+  "dependencies": {
+    "minimist": "1.2.0"
   }
 }
