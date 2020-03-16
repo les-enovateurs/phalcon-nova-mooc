@@ -9,7 +9,7 @@ define({
         'Field'                       : 'Campo',
         'General'                     : 'General',
         'Generated with'              : 'Generado con',
-        'Name'                        : 'lastnamebre',
+        'Name'                        : 'Nombre',
         'No response values.'         : 'Sin valores en la respuesta.',
         'optional'                    : 'opcional',
         'Parameter'                   : 'Parámetro',

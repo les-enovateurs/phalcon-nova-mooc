@@ -1,7 +1,7 @@
 {
-  "name": "API Gestion d'utilisateur",
+  "name": "API NovaMOOC",
   "version": "0.0.1",
-  "description": "API REST permettant de gérer les nov_users présent dans une table.",
-  "title": "Documentation API - Utilisateur",
-  "url" : "http://127.0.0.1"
+  "description": "API REST allow you to add course, users, ...",
+  "title": "API Documentation - NovaMooc",
+  "url" : "http://127.0.0.1:8080"
 }

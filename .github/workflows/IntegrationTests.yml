@@ -1,9 +1,9 @@
-name: Artifacts
+name: Integrations tests
 on: [push]
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    name: Artifacts
+    name: Tests with Cypress
     steps:
       - uses: actions/checkout@v1
       - name: Create cache folder

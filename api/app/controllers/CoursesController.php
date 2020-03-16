@@ -5,7 +5,7 @@ use NovaMooc\Models\Courses;
 class CoursesController extends ControllerBase
 {
     /**
-     * @api {post} /api/course/new Permet de créer un nouveau cours et de l'associer à l'utilisateur connecté
+     * @api {post} /api/course/new Allow to create new course
      * @apiName newCourses
      * @apiGroup Courses
      * @apiExample {curl} Example of use:

@@ -1,124 +1,8 @@
 define({ "api": [
   {
-    "type": "get",
-    "url": "/api/cours/:id",
-    "title": "Récupération d'un cours",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "id",
-            "description": "<p>L'ID du cours à renvoyer.</p>"
-          }
-        ]
-      }
-    },
-    "name": "infoCours",
-    "group": "Cours",
-    "examples": [
-      {
-        "title": "Exemple d'utilisation:",
-        "content": "curl -i -X GET -d '{\"token\":\"...\"}' http://127.0.0.1/api/cours/1",
-        "type": "curl"
-      }
-    ],
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "payload",
-            "description": "<p>Contient les informations du cours</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.1",
-    "filename": "../../app/controllers/CoursController.php",
-    "groupTitle": "Cours"
-  },
-  {
-    "type": "put",
-    "url": "/api/cours/modifier/:id",
-    "title": "Modifier un cours existant",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "id",
-            "description": "<p>L'ID du cours à renvoyer.</p>"
-          }
-        ]
-      }
-    },
-    "name": "modifierCours",
-    "group": "Cours",
-    "examples": [
-      {
-        "title": "Exemple d'utilisation:",
-        "content": "curl -i -X GET -d '{\"token\":\"...\", \"lastname\":\"Phalcon 4\", \"description\":\"Nouvelle version de Phalcon\"}' http://127.0.0.1/api/cours/modifier/1",
-        "type": "curl"
-      }
-    ],
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "payload",
-            "description": "<p>Contient les informations du cours actualisées</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.1",
-    "filename": "../../app/controllers/CoursController.php",
-    "groupTitle": "Cours"
-  },
-  {
-    "type": "post",
-    "url": "/api/cours/nouveau",
-    "title": "Permet de créer un nouveau cours et de l'associer à l'utilisateur connecté",
-    "name": "nouveauCours",
-    "group": "Cours",
-    "examples": [
-      {
-        "title": "Exemple d'utilisation:",
-        "content": "curl -i -X POST -d '{\"token\":\"...\", \"lastname\":\"Phalcon\", \"description\":\"Un formation dingue\"}' http://127.0.0.1/api/cours/nouveau",
-        "type": "curl"
-      }
-    ],
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "payload",
-            "description": "<p>Contient les informations du cours fraîchement crée</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.1",
-    "filename": "../../app/controllers/CoursController.php",
-    "groupTitle": "Cours"
-  },
-  {
     "type": "delete",
-    "url": "/api/cours/supprimer/:id",
-    "title": "Supprimer un cours existant",
+    "url": "/api/course/delete/:id",
+    "title": "Delete a course",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -127,17 +11,17 @@ define({ "api": [
             "type": "Integer",
             "optional": false,
             "field": "id",
-            "description": "<p>L'ID du cours à supprimer.</p>"
+            "description": "<p>The course's id to delete</p>"
           }
         ]
       }
     },
-    "name": "supprimerCours",
-    "group": "Cours",
+    "name": "deleteCourse",
+    "group": "Courses",
     "examples": [
       {
-        "title": "Exemple d'utilisation:",
-        "content": "curl -i -X GET -d '{\"token\":\"...\"}' http://127.0.0.1/api/cours/supprimer/1",
+        "title": "Example of use:",
+        "content": "curl -i -X GET -d '{\"token\":\"...\"}' http://127.0.0.1/api/course/delete/1",
         "type": "curl"
       }
     ],
@@ -149,85 +33,171 @@ define({ "api": [
             "type": "Boolean",
             "optional": false,
             "field": "payload",
-            "description": "<p>Indique si le cours a été supprimé</p>"
+            "description": "<p>Indicates if the course has been deleted</p>"
           }
         ]
       }
     },
     "version": "0.0.1",
-    "filename": "../../app/controllers/CoursController.php",
-    "groupTitle": "Cours"
-  },
-  {
-    "type": "post",
-    "url": "/api/inscription",
-    "title": "Création d'un nouvel utilisateur",
-    "name": "InscriptionUtilisateur",
-    "group": "NovUsers",
-    "examples": [
-      {
-        "title": "Exemple d'utilisation:",
-        "content": "curl -i -X POST -d '{\"lastname\":\"DOE\",\"firstname\":\"Conor\",\"email\":\"conor.doe@les-enovateurs.com\", \"password\":\"azert\"}' http://127.0.0.1/api/inscription",
-        "type": "curl"
-      }
-    ],
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "payload",
-            "description": "<p>Renvoie le nouvel utilisateur crée</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.1",
-    "filename": "../../app/controllers/IndexController.php",
-    "groupTitle": "NovUsers"
-  },
-  {
-    "type": "post",
-    "url": "/api/connexion",
-    "title": "Permet d'authentifier un utilisateur",
-    "name": "connexionUtilisateur",
-    "group": "NovUsers",
-    "examples": [
-      {
-        "title": "Exemple d'utilisation:",
-        "content": "curl -i -X POST -d '{\"email\":\"conor.doe@les-enovateurs.com\", \"password\":\"azert\"}' http://127.0.0.1/api/connexion",
-        "type": "curl"
-      }
-    ],
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "payload",
-            "description": "<p>Contient les informations de l'utilisateur fraîchement connecté</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.1",
-    "filename": "../../app/controllers/IndexController.php",
-    "groupTitle": "NovUsers"
+    "filename": "../../app/controllers/CoursesController.php",
+    "groupTitle": "Courses"
   },
   {
     "type": "get",
-    "url": "/api/cours",
-    "title": "Récupére les cours gérés par l'utilisateur",
-    "name": "coursUtilisateur",
-    "group": "NovUsers",
+    "url": "/api/cours/:id",
+    "title": "Get one course",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The course ID to return</p>"
+          }
+        ]
+      }
+    },
+    "name": "infoCourses",
+    "group": "Courses",
     "examples": [
       {
-        "title": "Exemple d'utilisation:",
-        "content": "curl -i -X GET -d '{\"token\":\"...\"}' http://127.0.0.1/api/cours",
+        "title": "Example of use:",
+        "content": "curl -i -X GET -d '{\"token\":\"...\"}' http://127.0.0.1/api/course/1",
+        "type": "curl"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "payload",
+            "description": "<p>Get informations about the course</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.1",
+    "filename": "../../app/controllers/CoursesController.php",
+    "groupTitle": "Courses"
+  },
+  {
+    "type": "post",
+    "url": "/api/course/new",
+    "title": "Allow to create new course",
+    "name": "newCourses",
+    "group": "Courses",
+    "examples": [
+      {
+        "title": "Example of use:",
+        "content": "curl -i -X POST -d '{\"token\":\"...\", \"lastname\":\"Phalcon\", \"description\":\"An amazing framework\"}' http://127.0.0.1/api/course/new",
+        "type": "curl"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "payload",
+            "description": "<p>Get informations about the new course</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.1",
+    "filename": "../../app/controllers/CoursesController.php",
+    "groupTitle": "Courses"
+  },
+  {
+    "type": "put",
+    "url": "/api/course/update/:id",
+    "title": "Update an existant course",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The course's id to update</p>"
+          }
+        ]
+      }
+    },
+    "name": "updateCourse",
+    "group": "Courses",
+    "examples": [
+      {
+        "title": "Example of use:",
+        "content": "curl -i -X GET -d '{\"token\":\"...\", \"lastname\":\"Phalcon 4\", \"description\":\"The new version of Phalcon\"}' http://127.0.0.1/api/course/update/1",
+        "type": "curl"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "payload",
+            "description": "<p>Content informations about the course's update</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.1",
+    "filename": "../../app/controllers/CoursesController.php",
+    "groupTitle": "Courses"
+  },
+  {
+    "type": "post",
+    "url": "/api/register",
+    "title": "Create a new user",
+    "name": "RegisterUser",
+    "group": "User",
+    "examples": [
+      {
+        "title": "Example of use:",
+        "content": "curl -i -X POST -d '{\"lastname\":\"DOE\",\"firstname\":\"Conor\",\"email\":\"conor.doe@les-enovateurs.com\", \"password\":\"azert\"}' http://127.0.0.1/api/register",
+        "type": "curl"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "payload",
+            "description": "<p>Returns the new user created</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.1",
+    "filename": "../../app/controllers/IndexController.php",
+    "groupTitle": "User"
+  },
+  {
+    "type": "get",
+    "url": "/api/user/courses",
+    "title": "Get courses created by a User",
+    "name": "coursesUser",
+    "group": "Users",
+    "examples": [
+      {
+        "title": "Example of use:",
+        "content": "curl -i -X GET -d '{\"token\":\"...\"}' http://127.0.0.1/api/courses",
         "type": "curl"
       }
     ],
@@ -239,25 +209,25 @@ define({ "api": [
             "type": "Array",
             "optional": false,
             "field": "payload",
-            "description": "<p>Contient un tableau de cours</p>"
+            "description": "<p>Get an array of courses</p>"
           }
         ]
       }
     },
     "version": "0.0.1",
-    "filename": "../../app/controllers/NovUsersController.php",
-    "groupTitle": "NovUsers"
+    "filename": "../../app/controllers/UsersController.php",
+    "groupTitle": "Users"
   },
   {
     "type": "get",
-    "url": "/api/utilisateur",
-    "title": "Récupération de l'utilisateur connecté",
-    "name": "infoUtilisateur",
-    "group": "NovUsers",
+    "url": "/api/user",
+    "title": "Get connected user",
+    "name": "infoUser",
+    "group": "Users",
     "examples": [
       {
-        "title": "Exemple d'utilisation:",
-        "content": "curl -i -X GET -d '{\"token\":\"...\"}' http://127.0.0.1/api/utilisateur",
+        "title": "Example of use:",
+        "content": "curl -i -X GET -d '{\"token\":\"...\"}' http://127.0.0.1/api/user",
         "type": "curl"
       }
     ],
@@ -269,13 +239,43 @@ define({ "api": [
             "type": "Object",
             "optional": false,
             "field": "payload",
-            "description": "<p>Contient les informations de l'utilisateur connecté</p>"
+            "description": "<p>Contains the information of the logged in user</p>"
           }
         ]
       }
     },
     "version": "0.0.1",
-    "filename": "../../app/controllers/NovUsersController.php",
-    "groupTitle": "NovUsers"
+    "filename": "../../app/controllers/UsersController.php",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "post",
+    "url": "/api/login",
+    "title": "Login a user",
+    "name": "loginUser",
+    "group": "Users",
+    "examples": [
+      {
+        "title": "Example of use:",
+        "content": "curl -i -X POST -d '{\"email\":\"conor.doe@les-enovateurs.com\", \"password\":\"azert\"}' http://127.0.0.1/api/login",
+        "type": "curl"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "payload",
+            "description": "<p>Has informations about the new connected user</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.1",
+    "filename": "../../app/controllers/IndexController.php",
+    "groupTitle": "Users"
   }
 ] });

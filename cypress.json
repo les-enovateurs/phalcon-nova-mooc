@@ -1,3 +1,7 @@
 {
-    "baseUrl": "http://localhost"
+    "baseUrl": "http://localhost",
+    "env": {
+        "user1": "john.doe@les-enovateurs.com",
+        "password1": "azerty"
+    }
 }

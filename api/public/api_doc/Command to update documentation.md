@@ -1,8 +1,8 @@
 # Documentation
 http://apidocjs.com/
 
-# Installation
+# Install apidoc
 npm install apidoc -g
 
-# Utilisation
+# use it
 apidoc -i ../../app/ -o .
