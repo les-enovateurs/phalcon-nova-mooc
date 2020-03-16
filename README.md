@@ -14,6 +14,10 @@ NovaMooc - a Phalcon project
 </p>
 
 <p align="center">
+  ![Integrations tests](https://github.com/les-enovateurs/phalcon-nova-mooc/workflows/Integrations%20tests/badge.svg)
+</p>
+
+<p align="center">
   <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#contributing">Contributing</a> •
