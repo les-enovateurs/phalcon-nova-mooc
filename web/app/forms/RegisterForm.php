@@ -20,16 +20,16 @@ class RegisterForm extends Form
     {
         // firstname
         $firstname = new Text('firstname', [
-            'placeholder' => ucfirst('your firstname'),
+            'placeholder' => ucfirst('your first name'),
             'class'       => 'form-control',
             'required'    => 'required'
         ]);
-        $firstname->setLabel(ucfirst('firstname'));
+        $firstname->setLabel(ucfirst('first name'));
         $firstname->addValidators(
             [
                 new PresenceOf(
                     [
-                        'message' => ucfirst('your firstname is required')
+                        'message' => ucfirst('your first name is required')
                     ]
                 )
             ]
@@ -39,17 +39,17 @@ class RegisterForm extends Form
         // lastname
         $lastname = new Text('lastname',
             [
-                'placeholder' => ucfirst('your lastname'),
+                'placeholder' => ucfirst('your last name'),
                 'class'       => 'form-control',
                 'required'    => 'required'
             ]);
-        $lastname->setLabel(ucfirst('lastname'));
+        $lastname->setLabel(ucfirst('last name'));
         $lastname->addValidators(
             [
                 new PresenceOf
                 (
                     [
-                        'message' => ucfirst('your lastname is required')
+                        'message' => ucfirst('your last name is required')
                     ]
                 )
             ]

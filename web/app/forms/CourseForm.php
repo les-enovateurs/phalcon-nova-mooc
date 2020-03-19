@@ -17,7 +17,7 @@ class CourseForm extends Form
         // title
         $title = new Text('title',
             [
-                'placeholder' => ucfirst('course\'s title'),
+                'placeholder' => ucfirst('title'),
                 'class'       => 'form-control',
                 'required'    => 'required'
             ]
@@ -38,7 +38,7 @@ class CourseForm extends Form
         // description
         $description = new Textarea('description',
             [
-                'placeholder' => ucfirst('a course\'s description'),
+                'placeholder' => ucfirst('description'),
                 'class'       => 'form-control'
             ]
         );
@@ -49,7 +49,7 @@ class CourseForm extends Form
         $oSubmitButton = new Submit('submit_button', [
             'class' => 'btn btn-primary',
         ]);
-        $oSubmitButton->setDefault(ucfirst('send'));
+        $oSubmitButton->setDefault(ucfirst('save'));
 
         $this->add($oSubmitButton);
     }
