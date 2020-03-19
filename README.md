@@ -32,6 +32,7 @@ NovaMooc - a Phalcon project
 * A MOOC project (create courses, add students...)
 * Architecture with Api/Web
 * Handle token with JWT
+* Cypress tests and generate videos as artefact GitHub Actions
 * Use Docker-compose to build this project
 * Cross platform :
   - Windows, macOS and Linux ready.
