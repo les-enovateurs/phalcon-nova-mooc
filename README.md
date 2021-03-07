@@ -3,7 +3,7 @@
   <br>
   <a href="https://les-enovateurs.com"><img src="https://user-images.githubusercontent.com/3491729/76463694-2274e180-63e4-11ea-9a05-442d00de2fed.png" alt="Nova Mooc - Phalcon - PHP Example" width="72"></a>
   <br>
-NovaMooc - a Phalcon project
+NovaMooc - a Phalcon project 
   <br>
 </h1>
 
